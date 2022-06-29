@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { db } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { Form, FormGroup, Label, Input, Button, Container } from "reactstrap";
@@ -8,6 +8,7 @@ export default function InfoForm() {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [event, setEvent] = React.useState("");
+  const [submitDisabled, setSubmitDisabled] = useState(true);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,6 +24,14 @@ export default function InfoForm() {
       setEvent("");
     }
   };
+
+  useEffect(() => {
+    if (name !== "" && email.includes("@")) {
+      setSubmitDisabled(false);
+    } else {
+      setSubmitDisabled(true);
+    }
+  }, [name, email]);
   return (
     <Container>
       <div className="mt-5 text-center fs-5">
@@ -74,7 +83,12 @@ export default function InfoForm() {
             })}
           </Input>
         </FormGroup>
-        <Button type="submit" color="primary" className="fw-bold mt-2">
+        <Button
+          type="submit"
+          disabled={submitDisabled}
+          color="primary"
+          className="fw-bold mt-2"
+        >
           Click to Start!
         </Button>
       </Form>
