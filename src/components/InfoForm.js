@@ -30,7 +30,7 @@ export default function InfoForm() {
         hiccups, we have created what we call a "technical audit" which will
         take inventory of your internet connection and computer setup to send to
         our team for record. We will work with you to rectify anything that
-        isn't optimal. This should only take a minute!
+        isn't optimal. <br></br>This should only take a minute!
       </div>
       <div className="mt-5">
         Select your event, fill out the form, and then hit "Begin" to start your
@@ -40,11 +40,11 @@ export default function InfoForm() {
 
       <Form onSubmit={handleSubmit}>
         <FormGroup className="mt-3">
-          <Label for="userName">Name</Label>
+          <Label for="userName">First and Last Name</Label>
           <Input
             id="userName"
             name="name"
-            placeholder="First and last name"
+            placeholder="'John Smith'"
             type="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -55,15 +55,20 @@ export default function InfoForm() {
           <Input
             id="userEmail"
             name="email"
-            placeholder="Email registered with"
+            placeholder="'johnsmith@domain.com'"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </FormGroup>
         <FormGroup>
-          <Label for="selectEvent">Event</Label>
-          <Input id="selectEvent" name="select" type="select">
+          <Label for="selectEvent">Select Event</Label>
+          <Input
+            id="selectEvent"
+            name="select"
+            type="select"
+            onChange={(e) => setEvent(e.target.value)}
+          >
             {currentEvents.map((item) => {
               return <option>{item.name}</option>;
             })}
