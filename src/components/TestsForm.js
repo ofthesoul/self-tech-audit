@@ -38,6 +38,13 @@ export default function InfoForm() {
 
   return (
     <Container>
+      <div className="mt-5 text-center fs-5">
+        To make sure your presentation goes smoothly and lessen the chance of
+        hiccups, we have created what we call a "technical audit" which will
+        take inventory of your internet connection and computer setup to send to
+        our team for record. We will work with you to rectify anything that
+        isn't optimal. <br></br>This should only take a minute!
+      </div>
       <div className="mt-5">
         Select your event, fill out the form, and then hit "Begin" to start your
         technical audit. <br></br>Your results will be sent to the Geniecast
