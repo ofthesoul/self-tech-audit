@@ -26,12 +26,13 @@ export default function InfoForm() {
   };
 
   useEffect(() => {
-    if (name !== "" && email.includes("@")) {
+    if (name !== "" && name.includes(" ") && email.includes("@")) {
       setSubmitDisabled(false);
     } else {
       setSubmitDisabled(true);
     }
   }, [name, email]);
+
   return (
     <Container>
       <div className="mt-5 text-center fs-5">
