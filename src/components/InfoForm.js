@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, setDoc } from "firebase/firestore";
 import { Form, FormGroup, Label, Input, Button, Container } from "reactstrap";
 import { currentEvents } from "./CurrentEvents";
 
@@ -14,7 +14,7 @@ export default function InfoForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (name !== "" || email !== "" || event !== "") {
-      const docRef = await addDoc(collection(db, "audits"), {
+      const docRef = await setDoc(collection(db, "audits", { event }), {
         name,
         email,
         event,
@@ -76,7 +76,7 @@ export default function InfoForm() {
             onChange={(e) => setEvent(e.target.value)}
           >
             {currentEvents.map((item) => {
-              return <option>{item.name}</option>;
+              return <option key={item.key}>{item.name}</option>;
             })}
           </Input>
         </FormGroup>
