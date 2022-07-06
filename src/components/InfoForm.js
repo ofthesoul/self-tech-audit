@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../firebase";
-import { collection, addDoc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { Form, FormGroup, Label, Input, Button, Container } from "reactstrap";
 import { currentEvents } from "./CurrentEvents";
 
@@ -14,13 +14,12 @@ export default function InfoForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (name !== "" || email !== "" || event !== "") {
-      const docRef = await setDoc(collection(db, "audits", { event }), {
+      const docRef = await setDoc(doc(db, "audits", event + " " + name), {
         name,
         email,
         event,
-        completed: false,
       });
-      setDocRef(docRef.id);
+      setDocRef(event + " " + name);
       console.log("Document written with ID: ", docRef.id);
       setName("");
       setEmail("");
